@@ -1,18 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
-    "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+    "http://www.apple.com/DTDs/PropertyList-1.0//EN">
 
 <plist version="1.0">
 <dict>
 
-    <!-- ========================================================= -->
-    <!-- Lumica1n Security Configuration Profile                    -->
-    <!-- ========================================================= -->
-
     <key>PayloadContent</key>
     <array>
-
-        <!-- ===================== PASSCODE ===================== -->
 
         <dict>
             <key>PayloadType</key>
@@ -28,45 +22,42 @@
             <string>18AAF0BF-50BE-4E6C-9189-DACABB6CC07B</string>
 
             <key>PayloadDisplayName</key>
-            <string>Lumica1n Strong Passcode</string>
+            <string>Lumica1n Maximum Passcode Security</string>
 
             <key>PayloadDescription</key>
             <string>
-                Enforces a stronger passcode policy on supported Apple devices.
+                Strong passcode requirements for supported Apple devices.
             </string>
 
             <key>PayloadOrganization</key>
             <string>Lumica1n</string>
 
-            <!-- Minimum passcode length -->
+            <!-- Minimum 20-character passcode -->
             <key>minLength</key>
-            <integer>10</integer>
+            <integer>20</integer>
 
             <!-- Require letters and numbers -->
             <key>requireAlphanumeric</key>
             <true/>
 
-            <!-- Require at least one complex character -->
+            <!-- At least 2 non-alphanumeric characters -->
             <key>minComplexChars</key>
-            <integer>1</integer>
+            <integer>2</integer>
 
-            <!-- Remember previous passcodes -->
+            <!-- Remember the previous 10 passcodes -->
             <key>pinHistory</key>
-            <integer>5</integer>
+            <integer>10</integer>
 
-            <!-- Number of failed attempts allowed -->
+            <!-- Lock policy after repeated failures -->
             <key>maxFailedAttempts</key>
             <integer>10</integer>
 
-            <!-- Maximum unlock grace period -->
+            <!-- Require authentication rather than allowing a grace period -->
             <key>maxGracePeriod</key>
-            <integer>5</integer>
-
+            <integer>0</integer>
         </dict>
 
     </array>
-
-    <!-- ===================== PROFILE INFO ===================== -->
 
     <key>PayloadType</key>
     <string>Configuration</string>
@@ -85,8 +76,7 @@
 
     <key>PayloadDescription</key>
     <string>
-        Lumica1n security hardening configuration profile for supported
-        Apple devices.
+        Lumica1n security hardening profile.
     </string>
 
     <key>PayloadOrganization</key>
