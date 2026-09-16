@@ -1,0 +1,55 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Xcode
+DerivedData/
+build/
+*.xcuserstate
+*.xcworkspace/xcuserdata/
+*.xcodeproj/xcuserdata/
+
+# Swift / Swift Package Manager
+.build/
+.swiftpm/
+Package.resolved
+
+# Swift Playgrounds
+.playground/
+timeline.xctimeline
+playground.xcworkspace/
+
+# Temporary files
+*.tmp
+*.temp
+*.log
+*.swp
+*.swo
+*~
+
+# IDE / Editor
+.vscode/
+.idea/
+
+# Secrets & credentials
+.env
+.env.*
+*.p12
+*.pfx
+*.pem
+*.key
+secrets/
+Secrets/
+
+# Generated files
+Generated/
+Dist/
+Output/
+
+# Archives
+*.zip
+*.tar
+*.gz
+*.dmg
