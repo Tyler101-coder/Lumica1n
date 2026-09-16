@@ -5,8 +5,15 @@
 <plist version="1.0">
 <dict>
 
+    <!-- ========================================================= -->
+    <!-- Lumica1n Security Configuration Profile                    -->
+    <!-- ========================================================= -->
+
     <key>PayloadContent</key>
     <array>
+
+        <!-- ===================== PASSCODE ===================== -->
+
         <dict>
             <key>PayloadType</key>
             <string>com.apple.mobiledevice.passwordpolicy</string>
@@ -18,36 +25,48 @@
             <string>com.lumica1n.security.passcode</string>
 
             <key>PayloadUUID</key>
-            <string>7F3E1A2B-6D44-4B9A-91C7-5E8D2F6A1043</string>
+            <string>18AAF0BF-50BE-4E6C-9189-DACABB6CC07B</string>
 
             <key>PayloadDisplayName</key>
-            <string>Lumica1n Passcode Security</string>
+            <string>Lumica1n Strong Passcode</string>
 
             <key>PayloadDescription</key>
-            <string>Strong passcode security policy provided by Lumica1n.</string>
+            <string>
+                Enforces a stronger passcode policy on supported Apple devices.
+            </string>
 
             <key>PayloadOrganization</key>
             <string>Lumica1n</string>
 
+            <!-- Minimum passcode length -->
             <key>minLength</key>
             <integer>10</integer>
 
+            <!-- Require letters and numbers -->
             <key>requireAlphanumeric</key>
             <true/>
 
+            <!-- Require at least one complex character -->
             <key>minComplexChars</key>
             <integer>1</integer>
 
+            <!-- Remember previous passcodes -->
             <key>pinHistory</key>
             <integer>5</integer>
 
+            <!-- Number of failed attempts allowed -->
             <key>maxFailedAttempts</key>
             <integer>10</integer>
 
+            <!-- Maximum unlock grace period -->
             <key>maxGracePeriod</key>
             <integer>5</integer>
+
         </dict>
+
     </array>
+
+    <!-- ===================== PROFILE INFO ===================== -->
 
     <key>PayloadType</key>
     <string>Configuration</string>
@@ -59,14 +78,15 @@
     <string>com.lumica1n.security</string>
 
     <key>PayloadUUID</key>
-    <string>2C91D7E4-83A6-4F52-BB18-9D6E0A735C41</string>
+    <string>A8240587-DF3D-40BE-ABC9-E6DDCB6CFCFE</string>
 
     <key>PayloadDisplayName</key>
     <string>Lumica1n Security</string>
 
     <key>PayloadDescription</key>
     <string>
-        Lumica1n security hardening profile for supported Apple devices.
+        Lumica1n security hardening configuration profile for supported
+        Apple devices.
     </string>
 
     <key>PayloadOrganization</key>
