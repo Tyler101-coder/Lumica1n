@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
+    "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+
+<plist version="1.0">
+<dict>
+
+    <key>PayloadContent</key>
+    <array>
+        <dict>
+            <key>PayloadType</key>
+            <string>com.apple.mobiledevice.passwordpolicy</string>
+
+            <key>PayloadVersion</key>
+            <integer>1</integer>
+
+            <key>PayloadIdentifier</key>
+            <string>com.lumica1n.security.passcode</string>
+
+            <key>PayloadUUID</key>
+            <string>7F3E1A2B-6D44-4B9A-91C7-5E8D2F6A1043</string>
+
+            <key>PayloadDisplayName</key>
+            <string>Lumica1n Passcode Security</string>
+
+            <key>PayloadDescription</key>
+            <string>Strong passcode security policy provided by Lumica1n.</string>
+
+            <key>PayloadOrganization</key>
+            <string>Lumica1n</string>
+
+            <key>minLength</key>
+            <integer>10</integer>
+
+            <key>requireAlphanumeric</key>
+            <true/>
+
+            <key>minComplexChars</key>
+            <integer>1</integer>
+
+            <key>pinHistory</key>
+            <integer>5</integer>
+
+            <key>maxFailedAttempts</key>
+            <integer>10</integer>
+
+            <key>maxGracePeriod</key>
+            <integer>5</integer>
+        </dict>
+    </array>
+
+    <key>PayloadType</key>
+    <string>Configuration</string>
+
+    <key>PayloadVersion</key>
+    <integer>1</integer>
+
+    <key>PayloadIdentifier</key>
+    <string>com.lumica1n.security</string>
+
+    <key>PayloadUUID</key>
+    <string>2C91D7E4-83A6-4F52-BB18-9D6E0A735C41</string>
+
+    <key>PayloadDisplayName</key>
+    <string>Lumica1n Security</string>
+
+    <key>PayloadDescription</key>
+    <string>
+        Lumica1n security hardening profile for supported Apple devices.
+    </string>
+
+    <key>PayloadOrganization</key>
+    <string>Lumica1n</string>
+
+    <key>PayloadRemovalDisallowed</key>
+    <false/>
+
+</dict>
+</plist>
