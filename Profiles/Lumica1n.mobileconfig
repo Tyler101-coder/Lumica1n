@@ -33,7 +33,6 @@
 
 		<!-- ================================================================= -->
 		<!-- PAYLOAD 1: Encrypted DNS Settings (DNS-over-HTTPS / Ad-Blocking)  -->
-		<!-- Routes all system DNS traffic through secure, filtering DoH       -->
 		<!-- ================================================================= -->
 		<dict>
 			<key>PayloadType</key>
@@ -53,7 +52,7 @@
 			<dict>
 				<key>DNSProtocol</key>
 				<string>HTTPS</string>
-				
+
 				<!-- Primary and Secondary Secure Anycast IPv4 Resolvers -->
 				<key>ServerAddresses</key>
 				<array>
@@ -96,7 +95,6 @@
 
 		<!-- ================================================================= -->
 		<!-- PAYLOAD 2: Web Content Filter & Explicit Content/Ad Blocker       -->
-		<!-- Enforces URL filtering, blocking unverified/unsafe domains        -->
 		<!-- ================================================================= -->
 		<dict>
 			<key>PayloadType</key>
@@ -116,28 +114,21 @@
 			<string>BuiltIn</string>
 			<key>AutoFilterEnabled</key>
 			<true/>
-			
+
 			<!-- Denied Domains (Explicit Ads, Phishing Networks, Trackers) -->
 			<key>BlacklistedURLs</key>
 			<array>
-				<string>http://* doubleclick.net/*</string>
-				<string>https://* doubleclick.net/*</string>
-				<string>http://* googlesyndication.com/*</string>
-				<string>https://* googlesyndication.com/*</string>
-				<string>http://* adservice.google.com/*</string>
-				<string>https://* adservice.google.com/*</string>
-				<string>http://* popads.net/*</string>
-				<string>https://* popads.net/*</string>
-				<string>http://* popcash.net/*</string>
-				<string>https://* popcash.net/*</string>
-				<string>http://* adf.ly/*</string>
-				<string>https://* adf.ly/*</string>
+				<string>doubleclick.net</string>
+				<string>googlesyndication.com</string>
+				<string>adservice.google.com</string>
+				<string>popads.net</string>
+				<string>popcash.net</string>
+				<string>adf.ly</string>
 			</array>
 		</dict>
 
 		<!-- ================================================================= -->
 		<!-- PAYLOAD 3: Device Restrictions & Home Screen/Safari Enforcement    -->
-		<!-- Disables unsafe web prompts, unverified installs, & phishing risks -->
 		<!-- ================================================================= -->
 		<dict>
 			<key>PayloadType</key>
@@ -156,12 +147,12 @@
 			<!-- Safari Security Hardening -->
 			<key>safariAllowAutoFill</key>
 			<false/>
-			<key>safariForceEnableFraudWarning</key>
+			<key>safariForceFraudWarning</key>
 			<true/>
 			<key>safariAllowPopups</key>
 			<false/>
 			<key>safariAcceptCookies</key>
-			<integer>1</integer> <!-- 1 = Block cross-site / 3rd party cookies -->
+			<integer>1</integer>
 
 			<!-- Preventing Unsafe Home Screen Web App / WebClip Injection -->
 			<key>allowUIConfigurationProfileInstallation</key>
@@ -173,8 +164,7 @@
 		</dict>
 
 		<!-- ================================================================= -->
-		<!-- PAYLOAD 4: Wi-Fi Security & Phishing/Malicious Hotspot Protection -->
-		<!-- Protects against rogue Wi-Fi networks and force-secures traffic   -->
+		<!-- PAYLOAD 4: Wi-Fi Security (Required: Networks + SSID_STR)          -->
 		<!-- ================================================================= -->
 		<dict>
 			<key>PayloadType</key>
@@ -188,14 +178,22 @@
 			<key>PayloadDisplayName</key>
 			<string>Lumica1n Secure Wi-Fi Enforcement</string>
 			<key>PayloadDescription</key>
-			<string>Blocks auto-joining open/unencrypted Wi-Fi hotspots prone to captive-portal phishing.</string>
+			<string>Provisions a secured Wi-Fi network with WPA3 encryption and prevents association to insecure captive networks.</string>
 
-			<key>DisableAssociationToCaptiveNetwork</key>
-			<true/>
-			<key>CaptiveBypass</key>
-			<false/>
-			<key>ProxyType</key>
-			<string>None</string>
+			<key>Networks</key>
+			<array>
+				<dict>
+					<!-- REQUIRED: replace with your actual Wi-Fi network name -->
+					<key>SSID_STR</key>
+					<string>Solomon Universe</string>
+					<key>EncryptionType</key>
+					<string>WPA3</string>
+					<key>Password</key>
+					<string>QazwsX@9796!</string>
+					<key>AutoJoin</key>
+					<true/>
+				</dict>
+			</array>
 		</dict>
 
 	</array>
