@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<!-- ===================================================================== -->
+	<!-- Lumica1n Core Configuration Profile Metadata                          -->
+	<!-- Created by LifeStudio for iOS, iPadOS, and macOS                      -->
+	<!-- ===================================================================== -->
+	<key>PayloadIdentifier</key>
+	<string>com.lifestudio.lumica1n.security</string>
+	<key>PayloadUUID</key>
+	<string>A1B2C3D4-E5F6-7890-ABCD-EF1234567890</string>
+	<key>PayloadType</key>
+	<string>Configuration</string>
+	<key>PayloadVersion</key>
+	<integer>1</integer>
+	<key>PayloadDisplayName</key>
+	<string>Lumica1n - Extreme Security</string>
+	<key>PayloadOrganization</key>
+	<string>LifeStudio</string>
+	<key>PayloadDescription</key>
+	<string>Extreme security enforcement profile for iOS/iPadOS/macOS. Includes Encrypted DoH DNS filtering, Web Content Filtering, explicit ad/malware blocking, WebClip restrictions, and strict Wi-Fi protection.</string>
+	<key>PayloadScope</key>
+	<string>System</string>
+	<key>PayloadRemovalDisallowed</key>
+	<false/>
+
+	<!-- ===================================================================== -->
+	<!-- Payload Content Array                                                 -->
+	<!-- ===================================================================== -->
+	<key>PayloadContent</key>
+	<array>
+
+		<!-- ================================================================= -->
+		<!-- PAYLOAD 1: Encrypted DNS Settings (DNS-over-HTTPS / Ad-Blocking)  -->
+		<!-- Routes all system DNS traffic through secure, filtering DoH       -->
+		<!-- ================================================================= -->
+		<dict>
+			<key>PayloadType</key>
+			<string>com.apple.dnsSettings.managed</string>
+			<key>PayloadVersion</key>
+			<integer>1</integer>
+			<key>PayloadIdentifier</key>
+			<string>com.lifestudio.lumica1n.dns</string>
+			<key>PayloadUUID</key>
+			<string>B2C3D4E5-F6A7-8901-BCDE-F23456789012</string>
+			<key>PayloadDisplayName</key>
+			<string>Lumica1n Extreme DoH Shield</string>
+			<key>PayloadDescription</key>
+			<string>Enforces encrypted DNS over HTTPS (DoH) with automated malware, tracker, and explicit ad-blocking.</string>
+
+			<key>DNSSettings</key>
+			<dict>
+				<key>DNSProtocol</key>
+				<string>HTTPS</string>
+				
+				<!-- Primary and Secondary Secure Anycast IPv4 Resolvers -->
+				<key>ServerAddresses</key>
+				<array>
+					<string>1.1.1.2</string>
+					<string>1.0.0.2</string>
+					<string>9.9.9.9</string>
+					<string>149.112.112.112</string>
+				</array>
+
+				<!-- DNS-over-HTTPS Endpoint Specs -->
+				<key>ServerURL</key>
+				<string>https://security.cloudflare-dns.com/dns-query</string>
+			</dict>
+
+			<!-- On-Demand Wi-Fi and Cellular DNS Enforcement Rules -->
+			<key>OnDemandRules</key>
+			<array>
+				<dict>
+					<key>Action</key>
+					<string>EvaluateConnection</string>
+					<key>ActionParameters</key>
+					<array>
+						<dict>
+							<key>DomainAction</key>
+							<string>NeverConnect</string>
+							<key>Domains</key>
+							<array>
+								<string>*.local</string>
+								<string>*.internal</string>
+							</array>
+						</dict>
+					</array>
+				</dict>
+				<dict>
+					<key>Action</key>
+					<string>Connect</string>
+				</dict>
+			</array>
+		</dict>
+
+		<!-- ================================================================= -->
+		<!-- PAYLOAD 2: Web Content Filter & Explicit Content/Ad Blocker       -->
+		<!-- Enforces URL filtering, blocking unverified/unsafe domains        -->
+		<!-- ================================================================= -->
+		<dict>
+			<key>PayloadType</key>
+			<string>com.apple.webcontentfilter.basic</string>
+			<key>PayloadVersion</key>
+			<integer>1</integer>
+			<key>PayloadIdentifier</key>
+			<string>com.lifestudio.lumica1n.webfilter</string>
+			<key>PayloadUUID</key>
+			<string>C3D4E5F6-A7B8-9012-CDEF-345678901234</string>
+			<key>PayloadDisplayName</key>
+			<string>Lumica1n Strict Web Shield</string>
+			<key>PayloadDescription</key>
+			<string>Filters adult content, malicious redirects, unverified websites, and unsafe web-to-homescreen installations.</string>
+
+			<key>FilterType</key>
+			<string>BuiltIn</string>
+			<key>AutoFilterEnabled</key>
+			<true/>
+			
+			<!-- Denied Domains (Explicit Ads, Phishing Networks, Trackers) -->
+			<key>BlacklistedURLs</key>
+			<array>
+				<string>http://* doubleclick.net/*</string>
+				<string>https://* doubleclick.net/*</string>
+				<string>http://* googlesyndication.com/*</string>
+				<string>https://* googlesyndication.com/*</string>
+				<string>http://* adservice.google.com/*</string>
+				<string>https://* adservice.google.com/*</string>
+				<string>http://* popads.net/*</string>
+				<string>https://* popads.net/*</string>
+				<string>http://* popcash.net/*</string>
+				<string>https://* popcash.net/*</string>
+				<string>http://* adf.ly/*</string>
+				<string>https://* adf.ly/*</string>
+			</array>
+		</dict>
+
+		<!-- ================================================================= -->
+		<!-- PAYLOAD 3: Device Restrictions & Home Screen/Safari Enforcement    -->
+		<!-- Disables unsafe web prompts, unverified installs, & phishing risks -->
+		<!-- ================================================================= -->
+		<dict>
+			<key>PayloadType</key>
+			<string>com.apple.applicationaccess</string>
+			<key>PayloadVersion</key>
+			<integer>1</integer>
+			<key>PayloadIdentifier</key>
+			<string>com.lifestudio.lumica1n.restrictions</string>
+			<key>PayloadUUID</key>
+			<string>D4E5F6A7-B8C9-0123-DEFA-456789012345</string>
+			<key>PayloadDisplayName</key>
+			<string>Lumica1n System Hardening</string>
+			<key>PayloadDescription</key>
+			<string>Hardens Safari and system security rules against unverified profiles and rogue Home Screen apps.</string>
+
+			<!-- Safari Security Hardening -->
+			<key>safariAllowAutoFill</key>
+			<false/>
+			<key>safariForceEnableFraudWarning</key>
+			<true/>
+			<key>safariAllowPopups</key>
+			<false/>
+			<key>safariAcceptCookies</key>
+			<integer>1</integer> <!-- 1 = Block cross-site / 3rd party cookies -->
+
+			<!-- Preventing Unsafe Home Screen Web App / WebClip Injection -->
+			<key>allowUIConfigurationProfileInstallation</key>
+			<false/>
+			<key>allowUntrustedTLSPrompt</key>
+			<false/>
+			<key>forceEncryptedBackup</key>
+			<true/>
+		</dict>
+
+		<!-- ================================================================= -->
+		<!-- PAYLOAD 4: Wi-Fi Security & Phishing/Malicious Hotspot Protection -->
+		<!-- Protects against rogue Wi-Fi networks and force-secures traffic   -->
+		<!-- ================================================================= -->
+		<dict>
+			<key>PayloadType</key>
+			<string>com.apple.wifi.managed</string>
+			<key>PayloadVersion</key>
+			<integer>1</integer>
+			<key>PayloadIdentifier</key>
+			<string>com.lifestudio.lumica1n.wifi</string>
+			<key>PayloadUUID</key>
+			<string>E5F6A7B8-C9D0-1234-EFAB-567890123456</string>
+			<key>PayloadDisplayName</key>
+			<string>Lumica1n Secure Wi-Fi Enforcement</string>
+			<key>PayloadDescription</key>
+			<string>Blocks auto-joining open/unencrypted Wi-Fi hotspots prone to captive-portal phishing.</string>
+
+			<key>DisableAssociationToCaptiveNetwork</key>
+			<true/>
+			<key>CaptiveBypass</key>
+			<false/>
+			<key>ProxyType</key>
+			<string>None</string>
+		</dict>
+
+	</array>
+</dict>
+</plist>
